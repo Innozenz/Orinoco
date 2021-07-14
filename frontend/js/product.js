@@ -17,7 +17,7 @@ function showCamera(data) {
     }
 }
 
-function getCameras(id) {
+function getCamera(id) {
     return fetch("http://localhost:3000/api/cameras/" + id)
         .then(function (response) {
             return response.json();
@@ -66,4 +66,6 @@ function addToBasket(data) {
 
 let params = (new URL(document.location)).searchParams;
 let id = params.get("id");
-getCameras(id);
+getCamera(id);
+
+console.log(getCamera(id));
