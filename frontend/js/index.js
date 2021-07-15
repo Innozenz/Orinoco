@@ -1,6 +1,6 @@
 function getCameras() {
-    fetch("http://localhost:3000/api/cameras")
-        .then(function (response) {
+    fetch("http://localhost:3000/api/cameras") //appel api, callback, ... return une promesse
+        .then(function (response) { //fonction prend pour parametre response et return response.json
             return response.json();
         })
         .then(function (data) {
@@ -14,6 +14,7 @@ function getCameras() {
 }
 
 function getOneCamera(camera) {
+    // Création des éléments
     let cameras = document.querySelector(".cameras"),
         cameraItem = document.createElement("div"),
         cameraItemTop = document.createElement("div"),
@@ -25,6 +26,7 @@ function getOneCamera(camera) {
         productPageLink = document.createElement("a"),
         urlPage = "product.html?id=" + camera._id;
 
+    // Remplissage des éléments
     name.appendChild(document.createTextNode(camera.name));
     image.src = camera.imageUrl;
     price.appendChild(document.createTextNode((camera.price / 100).toLocaleString("en") + " €"));
@@ -32,6 +34,7 @@ function getOneCamera(camera) {
     productPageLink.appendChild(document.createTextNode("Voir la page du produit"));
     productPageLink.setAttribute('href', urlPage);
 
+    //Stylisation des éléments
     cameraItem.classList.add("w-full", "max-w-sm", "mx-auto", "rounded-md", "shadow-md", "overflow-hidden");
     cameraItemTop.classList.add("flex", "items-end", "justify-end", "h-56", "w-full", "bg-cover");
     cameraItemBottom.classList.add("px-5", "py-3");
@@ -39,14 +42,13 @@ function getOneCamera(camera) {
     name.classList.add("text-gray-700", "uppercase");
     productPageLink.classList.add("block", "my-6", "px-6", "text-center", "py-2", "transition", "ease-in", "duration-200", "uppercase", "rounded-full", "hover:bg-gray-800", "hover:text-white", "border-2", "border-gray-900", "focus:outline-none", "add-cart");
     price.classList.add("text-gray-500", "mt-2");
-
+// Placement des éléments de la camera
     cameraItemBottom.appendChild(name);
     cameraItemBottom.appendChild(price);
     cameraItem.appendChild(image);
     cameraItem.appendChild(cameraItemBottom);
     cameraItemBottom.appendChild(productPageLink);
 
-    // Placement de la camera dans le ul
     cameras.appendChild(cameraItem);
 }
 

@@ -4,6 +4,7 @@ let productsID = [];
 function getBasketItem(i) {
     productsID.push(basketItems[i]._id);
 
+    // Création des éléments
     let basket = document.querySelector("#basket"),
         basketItem = document.createElement("div"),
         basketItemBottom = document.createElement("div"),
@@ -51,7 +52,7 @@ function getBasketItem(i) {
     price.classList.add("text-gray-500", "mt-2", "text-center");
     selectedLense.classList.add("text-center");
 
-    // Placement des éléments de la camera dans son li
+    // Placement des éléments de la camera
     basketItem.appendChild(image);
     basketItemBottom.appendChild(name);
     basketItemBottom.appendChild(selectedLense);
@@ -63,7 +64,6 @@ function getBasketItem(i) {
     basketItemBottom.appendChild(deleteItemButton);
     basketItemBottom.appendChild(productPageLink);
 
-    // Placement de la camera dans le ul
     basket.appendChild(basketItem);
 
 }
@@ -119,12 +119,12 @@ function deleteItem(e) {
     //Supprimer l'item dans le local storage
     basketItems.splice(basketItemIndex, 1);
     localStorage.setItem("basket", (JSON.stringify(basketItems)));
-    window.location.reload(true);
     alert("Item supprimé !");
+    window.location.reload(true);
 }
 
 function checkIfFieldIsValid(input, regExp) {
-    return input.value.match(regExp) !== null;
+    return input.value.match(regExp);
 }
 
 function getForm() {

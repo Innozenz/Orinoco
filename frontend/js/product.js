@@ -1,11 +1,12 @@
 function showCamera(data) {
+    // Création des éléments
     let name = document.querySelector("#name"),
         price = document.querySelector("#price"),
         image = document.querySelector("#image"),
         description = document.querySelector("#description"),
         selectLenses = document.querySelector("select");
 
-
+    // Remplissage des éléments
     name.textContent = data.name;
     price.textContent = (data.price / 100).toLocaleString("en") + " €";
     image.src = data.imageUrl;
@@ -24,6 +25,7 @@ function getCamera(id) {
         })
         .then(function (data) {
             showCamera(data);
+            // Ecouter les clics sur le bouton addToBasket
             let addItemToBasket = document.querySelector("#addToBasket");
             addItemToBasket.addEventListener("click", function () {addToBasket(data)}, false);
         })
@@ -41,7 +43,6 @@ function addToBasket(data) {
     //Récupérer les informations de la caméra
     data.selectedLense = document.querySelector("option:checked").innerText;
     data.selectedQuantity = document.querySelector("input").value;
-    delete data.lenses;
     //création d'une variable pour manipuler le panier
     let basket = JSON.parse(localStorage.getItem("basket"));
     //Vérification que l'item n'existe pas déjà dans le panier
@@ -67,3 +68,5 @@ function addToBasket(data) {
 let params = (new URL(document.location)).searchParams;
 let id = params.get("id");
 getCamera(id);
+
+
